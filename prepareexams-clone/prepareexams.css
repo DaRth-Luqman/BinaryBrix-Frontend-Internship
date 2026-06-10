@@ -1,0 +1,296 @@
+.navbar-header {
+    padding: 2px;
+    background-color: #0d0c22;
+    color: white
+}
+
+.nav-email {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.nav-email a {
+    text-decoration: none;
+    color: #19a5c8;
+}
+
+.nav-email a:hover {
+    color: #262f6b;
+}
+
+.searchbtn {
+    border: 2px solid #19a5c8;
+    border-radius: 2px;
+    background-color: #19a5c8;
+    color: white;
+}
+
+.searchbtn:hover {
+    border-color: #262f6b;
+    background-color: #262f6b;
+    transition: ease-in-out 0.2s;
+}
+
+.loginbtn {
+    background-color: #19a5c8;
+    color: white;
+    text-decoration: none;
+    padding: 7px 2px;
+}
+
+.loginbtn:hover {
+    background-color: #262f6b;
+    transition: ease-in-out 0.2s;
+}
+
+.navlist {
+    margin-left: auto;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: black;
+}
+
+.nav-link:hover {
+    color: #19a5c8;
+}
+
+.nav-border {
+    border-top: 1px solid #19a5c8;
+    border-bottom: 1px solid #19a5c8;
+    background-color: white;
+}
+
+.navcart {
+    border: 1px solid #19a5c8;
+    border-radius: 5px;
+}
+
+.navcart:hover {
+    border-color: transparent;
+}
+
+.hamburgerbtn {
+    background-color: #19a5c8;
+}
+
+.hamburgerbtn:hover i {
+    color: white;
+}
+
+.rowmargin {
+    margin-top: 20px;
+}
+
+.loginform {
+    border: 3px solid #262f6b;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.loginform:hover {
+    border-color: #19a5c8;
+}
+
+.loginform:hover .loginformbtn {
+    background-color: #19a5c8;
+    color: white;
+}
+
+.loginformbtn {
+    color: white;
+    background-color: #262f6b;
+}
+
+.passwordmargin {
+    margin: 20px 0;
+}
+
+.sideinfo {
+    border: 3px solid #19a5c8;
+    padding: 15px;
+}
+
+.sideinfo:hover {
+    border-color: #fcbf22;
+}
+
+.dottedborder {
+    border: 2px dashed transparent;
+}
+
+.dottedborder:hover {
+    border-color: #262f6b;
+}
+
+.iconsize {
+    font-size: 40px;
+    color: #19a5c8;
+    transition: all ease .2s;
+}
+
+.iconsize:hover {
+    color: #262f6b;
+}
+
+.backimg {
+    background-image: url("wall3.jpg");
+    width: 100%;
+    padding: 10px 0;
+    background-repeat: repeat;
+}
+
+.bg1 {
+    background-color: #262f6b;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 15px;
+}
+
+.bg2 {
+    background-color: #19a5c8;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 5px;
+}
+
+.box {
+    border: 3px solid #19a5c8;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px #262f6b;
+}
+
+#owl-demo .item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.nameclr {
+    color: #19a5c8
+}
+
+.bg3 {
+    background-color: #F9F8FD;
+}
+
+.sigupbtn {
+    background-color: #19a5c8;
+    color: white;
+    border-radius: 5px;
+}
+
+.sigupbtn:hover {
+    background-color: #262f6b;
+    color: white;
+}
+
+.ql {
+    text-decoration: none;
+    color: #494949;
+    font-weight: bold;
+}
+
+.ql:hover {
+    color: #101010;
+}
+
+.footer {
+    background-color: #0D0C22;
+    padding: 0;
+}
+
+.cardsize {
+    font-size: 2em;
+}
+
+.breads {
+    background-color: #19a5c8;
+    border-radius: 3px;
+}
+
+.bci {
+    text-decoration: none;
+    color: white;
+}
+
+.hrline {
+    border-width: 3px;
+}
+
+.regbtn {
+    background-color: #262f6b;
+    color: white;
+}
+
+.regbtn:hover {
+    background-color: #19a5c8;
+    color: white;
+}
+
+.forget {
+    text-decoration: none;
+    color: #262f6b;
+}
+
+.forget:hover {
+    color: #19a5c8;
+}
+
+.subbtn {
+    color: white;
+    background-color: #262f6b;
+}
+
+.subbtn:hover {
+    color: white;
+    background-color: #19a5c8;
+}
+
+.border1 {
+    border: 1px solid #262f6b;
+}
+
+.border1:hover {
+    border-color: #19a5c8;
+}
+
+.apcbtn {
+    color: white;
+    background-color: #19a5c8;
+}
+
+.apcbtn:hover {
+    background-color: #262f6b;
+    color: white;
+}
+
+.hrline2 {
+    border-width: 2px;
+}
+
+.toast {
+    z-index: 9999;
+    background-color: white;
+    width: max-content;
+    height: max-content;
+}
+
+.cbtn {
+    justify-self: end;
+    margin-bottom: 10px;
+    background-color: white;
+    border: none;
+    color: black;
+    border-radius: 50%;
+    z-index: 9999;
+    display: none;
+}
+
+.toastcon {
+    bottom: 150px;
+    right: 0;
+    width: max-content;
+}

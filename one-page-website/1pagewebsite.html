@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        .banner {
+            padding: 2vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: aliceblue;
+        }
+
+        .banner img {
+            width: 10vw;
+        }
+
+        .banner ul {
+            display: flex;
+            align-items: center;
+            list-style-type: none;
+            flex-wrap: none;
+        }
+
+        .banner ul a {
+            text-decoration: none;
+            color: black;
+            padding: 1vw;
+            border-radius: 5px;
+            font-size: 1.8vw;
+        }
+
+        .banner ul a:hover {
+            background-color: antiquewhite;
+        }
+
+        .banner ul a:active {
+            opacity: 0.5;
+        }
+
+        .imagesection {
+            padding: 2vw;
+            display: grid;
+            grid-template-columns: 2fr auto;
+            justify-content: space-between;
+            gap: 1vw;
+        }
+
+        .col1 {
+            display: flex;
+            gap: 1vw;
+        }
+
+        .col1 img {
+            width: 32vw;
+            height: 32vw;
+        }
+
+        .col1 p {
+            font-size: 2vw;
+            text-align: justify;
+            line-height: 5vw;
+        }
+
+        .col2 {
+            display: flex;
+            flex-direction: column;
+            gap: 1vw;
+        }
+
+        .smallimg {
+            width: 10vw;
+            height: 10vw;
+        }
+
+        .carousel {
+            overflow: hidden;
+            position: relative;
+            padding: 2vw 0;
+            background-color: aliceblue;
+        }
+
+        .slide {
+            display: flex;
+            flex-wrap: nowrap;
+            transition: transform 0.4s ease;
+        }
+
+        .cimg {
+            width: 100%;
+            height: 40vw;
+            flex-shrink: 0;
+        }
+
+        .icon1,
+        .icon2 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 4vw;
+            color: antiquewhite;
+            cursor: pointer;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .icon1:hover,
+        .icon2:hover {
+            font-size: 5vw;
+            opacity: 1;
+        }
+
+        .icon1:active,
+        .icon2:active {
+            font-size: 4vw;
+            opacity: 0.5;
+        }
+
+        .icon1 {
+            left: 2%;
+        }
+
+        .icon2 {
+            right: 2%;
+        }
+
+        .accordian {
+            padding: 2vw;
+            margin: 5vw 0;
+        }
+
+        .accitem {
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 2vw;
+        }
+
+        .question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 3vw;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .accitem:hover {
+            background-color: antiquewhite;
+        }
+
+        .accitem:active {
+            opacity: 0.5;
+        }
+
+        .answer {
+            font-size: 2vw;
+            text-align: justify;
+            display: none;
+            overflow: hidden;
+            transition: display 0.3s ease;
+            margin-top: 1vw;
+        }
+
+        .accitem.active .answer {
+            display: block;
+        }
+
+        .modal {
+            padding: 15vw 2vw;
+            background-color: aliceblue;
+        }
+
+        .title1 {
+            font-size: 7vw;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .moditem {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: white;
+            z-index: 1;
+        }
+
+        .title2 {
+            font-size: 3vw;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 1vw;
+        }
+
+        .icon4 {
+            cursor: pointer;
+            padding: 1vw;
+            border-radius: 50%;
+            background-color: antiquewhite;
+            color: black;
+        }
+
+        .icon4:active {
+            opacity: 0.5;
+        }
+
+        .text {
+            font-size: 3vw;
+            line-height: 1;
+            margin-bottom: 1vw;
+        }
+
+        .email {
+            border-radius: 50px;
+            width: 20vw;
+            outline: none;
+            padding: 1vw;
+            border: 1px solid black;
+            font-size: 3vw;
+        }
+
+        .submit {
+            padding: 1vw;
+            border-radius: 50px;
+            border: 1px solid black;
+            background-color: antiquewhite;
+            cursor: pointer;
+            font-size: 3vw;
+        }
+
+        .mod {
+            width: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 2vw;
+            border-radius: 5px;
+            line-height: 0;
+        }
+
+        .tabs {
+            padding: 2vw;
+            display: flex;
+            flex-direction: column;
+            margin: 2vw 0;
+        }
+
+        .tabname {
+            text-align: center;
+            border: 1px solid black;
+            width: 15vw;
+            padding: 1vw;
+            background-color: antiquewhite;
+            opacity: 0.5;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 3vw;
+            border-bottom: none;
+        }
+
+        .tabname:hover {
+            opacity: 1;
+            font-weight: bold;
+        }
+
+        .tabnames {
+            display: flex;
+            gap: 1vw
+        }
+
+        .tabitem {
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 1vw;
+            display: none;
+        }
+
+        .wycd {
+            list-style-position: inside;
+        }
+
+        .tabtitle {
+            font-size: 3vw;
+            font-weight: bold;
+            margin-bottom: 1vw;
+        }
+
+        .tabdata {
+            font-size: 2vw;
+        }
+
+        .tabname.active {
+            opacity: 1;
+            font-weight: bold;
+        }
+
+        .owl {
+            padding: 4vw;
+            background-color: aliceblue;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: 100% 100% 100%;
+            gap: 8vw;
+            border: 1px solid black;
+            transition: transform 0.4s ease;
+
+        }
+
+        .card {
+            border: 1px solid black;
+            text-align: center;
+            padding: 1vw;
+        }
+
+        .heading {
+            font-size: 2vw;
+            font-weight: bold;
+            margin-bottom: 1vw;
+        }
+
+        .description {
+            font-size: 1.5vw;
+        }
+
+        .icon5,
+        .icon6 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2vw;
+            color: black;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .icon5 {
+            left: 1%;
+        }
+
+        .icon6 {
+            right: 1%;
+        }
+
+        .icon5:active,
+        .icon6:active {
+            opacity: 0.5;
+        }
+
+        .cardgroup {
+            display: flex;
+        }
+
+        @media (max-width:390px) {
+            .banner {
+                flex-direction: column;
+            }
+
+            .banner ul {
+                flex-direction: column;
+            }
+
+            .banner img {
+                width: 20vw;
+            }
+
+            .banner ul a {
+                font-size: 5vw;
+                font-weight: bold;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="home" class="banner">
+        <a href="#home"><img src="oep logo.png" class="logo" alt="logo"></a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#image">Image</a></li>
+            <li><a href="#carousel">Carousel</a></li>
+            <li><a href="#accordian">Accordian</a></li>
+            <li><a href="#modal">Modal</a></li>
+            <li><a href="#tabs">Tabs</a></li>
+            <li><a href="#owl">Owl</a></li>
+        </ul>
+    </div>
+    <div class="imagesection" id="image">
+        <div class="col1">
+            <img src="download (11).jpeg" class="bigimg" alt="bigimg">
+            <p>Bringing ideas to life through design and code is at the heart of what we do.
+                This image offers a glimpse into one of our latest creative projects.
+                It combines clean, modern visuals with smooth, intuitive functionality.
+                Every element is thoughtfully crafted for both aesthetics and performance.
+                We're proud to share work that reflects our passion for innovation and detail.</p>
+        </div>
+        <div class="col2">
+            <img src="download (12).jpeg" class="smallimg" alt="smallimg">
+            <img src="download (13).jpeg" class="smallimg" alt="smallimg">
+            <img src="download (14).jpeg" class="smallimg" alt="smallimg">
+        </div>
+    </div>
+    <div class="carousel" id="carousel">
+        <i class="fa-regular fa-circle-left icon1"></i>
+        <div class="slide">
+            <img src="download (15).jpeg" alt="image" class="cimg">
+            <img src="download (16).jpeg" alt="image" class="cimg">
+            <img src="download (17).jpeg" alt="image" class="cimg">
+            <img src="download (18).jpeg" alt="image" class="cimg">
+            <img src="download (19).jpeg" alt="image" class="cimg">
+        </div>
+        <i class="fa-regular fa-circle-right icon2"></i>
+    </div>
+    <div class="accordian" id="accordian">
+        <div class="accitem">
+            <div class="question">What is HTML? <i class="fa-regular fa-circle-up icon3"></i> </div>
+            <div class="answer">HTML (HyperText Markup Language) is the standard markup language used to create web
+                pages. It provides the structure for content on the web, including text, images, links, and more.</div>
+        </div>
+        <div class="accitem">
+            <div class="question">Why use CSS? <i class="fa-regular fa-circle-up icon3"></i> </div>
+            <div class="answer">CSS (Cascading Style Sheets) is used to style and layout web pages. It controls colors,
+                fonts, spacing, positioning, and animations to make websites visually appealing and user-friendly.</div>
+        </div>
+        <div class="accitem">
+            <div class="question">What is JavaScript? <i class="fa-regular fa-circle-up icon3"></i> </div>
+            <div class="answer">JavaScript is a programming language that adds interactivity to websites. It lets you
+                create dynamic content, control multimedia, animate elements, and respond to user actions like clicks or
+                form submissions.</div>
+        </div>
+    </div>
+    <div class="modal" id="modal">
+        <div class="title1">Subscribe to Our Newsletter</div>
+        <div class="moditem">
+            <div class="mod">
+                <div class="title2">Subscribe to Our Newsletter <i class="fa-solid fa-xmark icon4"></i> </div>
+                <div class="text">Stay updated with our latest news and offers. Enter your email to subscribe to our
+                    monthly
+                    newsletter.</div>
+                <form>
+                    <input id="email" type="email" placeholder="Email" class="email">
+                    <button type="submit" for="email" class="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="tabs" id="tabs">
+        <div class="tabnames">
+            <div class="tabname">Overview</div>
+            <div class="tabname">Features</div>
+            <div class="tabname">Contact</div>
+        </div>
+        <div class="tabitem">
+            <div class="tabtitle">Welcome to Our Platform</div>
+            <div class="tabdata">Explore powerful tools and intuitive interfaces designed to simplify your workflow.
+                Whether you're managing a team, tracking progress, or automating tasks — everything starts here.</div>
+        </div>
+        <div class="tabitem">
+            <div class="tabtitle">What You Can Do</div>
+            <div class="tabdata">
+                <ul class="wycd">
+                    <li>Real-time collaboration</li>
+                    <li>Drag-and-drop task management</li>
+                    <li>Advanced analytics dashboard</li>
+                    <li>Seamless integrations with your favorite tools</li>
+                </ul>
+            </div>
+        </div>
+        <div class="tabitem">
+            <div class="tabtitle">Get in Touch</div>
+            <div class="tabdata">Have questions or feedback? Reach out to our support team anytime. We’re available 24/7
+                via email, chat, or phone to assist you.</div>
+        </div>
+    </div>
+    <div class="owl" id="owl">
+        <i class="fa-regular fa-circle-left icon5"></i>
+        <div class="cards">
+            <div class="cardgroup">
+                <div class="card">
+                    <div class="heading">Smart Dashboard</div>
+                    <div class="description">Monitor your activity and stats in real-time with a personalized control
+                        panel.
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="heading">Team Collaboration</div>
+                    <div class="description">Work together seamlessly with shared tasks, notes, and messaging.</div>
+                </div>
+                <div class="card">
+                    <div class="heading">Task Automation</div>
+                    <div class="description">Save time by automating repetitive workflows with custom triggers.</div>
+                </div>
+                <div class="card">
+                    <div class="heading">File Management</div>
+                    <div class="description">Upload, organize, and share files securely with your team or clients.</div>
+                </div>
+            </div>
+            <div class="cardgroup">
+                <div class="card">
+                    <div class="heading">Real-Time Chat</div>
+                    <div class="description">Communicate instantly through our built-in messaging platform.</div>
+                </div>
+                <div class="card">
+                    <div class="heading">Analytics Insights</div>
+                    <div class="description">Track performance with interactive charts and data-driven reports.</div>
+                </div>
+                <div class="card">
+                    <div class="heading">Custom Workspaces</div>
+                    <div class="description">Tailor your environment with flexible layouts and module controls.</div>
+                </div>
+                <div class="card">
+                    <div class="heading">Calendar Integration</div>
+                    <div class="description">Sync schedules, set reminders, and plan meetings effortlessly.</div>
+                </div>
+            </div>
+            <div class="cardgroup">
+                <div class="card">
+                    <div class="heading">Mobile Friendly</div>
+                    <div class="description">Access everything on-the-go with a fully responsive mobile interface.</div>
+                </div>
+                <div class="card">
+                    <div class="heading">Notifications Center</div>
+                    <div class="description">Stay updated with timely alerts and system messages.</div>
+                </div>
+                <div class="card">
+                    <div class="heading">Role-Based Access</div>
+                    <div class="description">Control who sees what with fine-grained permission settings.</div>
+                </div>
+                <div class="card">
+                    <div class="heading">Third-Party Integrations</div>
+                    <div class="description">Connect your favorite apps like Slack, Google Drive, and more.</div>
+                </div>
+            </div>
+        </div>
+        <i class="fa-regular fa-circle-right icon6"></i>
+    </div>
+    <script src="1pagewebsitescript.js"></script>
+</body>
+
+</html>

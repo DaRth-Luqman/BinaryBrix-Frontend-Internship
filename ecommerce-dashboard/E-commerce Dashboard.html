@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>E-commerce Dashboard</title>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        .bannerimg {
+            height: 100vh;
+        }
+
+        .toastimg {
+            height: 10vh;
+        }
+
+        #dashboard {
+            scroll-margin-top: 40px;
+        }
+
+        #activity {
+            scroll-margin-top: 60px;
+        }
+
+        #anp {
+            scroll-margin-top: 60px;
+        }
+
+        #qh {
+            scroll-margin-top: 45px;
+        }
+
+        #carouselExample {
+            scroll-margin-top: 60px;
+        }
+
+        #inventory {
+            scroll-margin-top: 60px;
+        }
+
+        a.active {
+            text-decoration: none;
+            color: gray;
+            cursor: default;
+        }
+
+        hr {
+            margin: 0;
+        }
+
+        .page-link {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="position-relative">
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ShopZone</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#orders">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#customers">Customers</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Admin
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Admin Dashboard</a></li>
+                            <li><a class="dropdown-item" href="#">Site Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <hr>
+    <nav class="navbar navbar-expand-md bg-body-tertiary justify-content-center position-sticky top-0 z-3 breadnav"
+        aria-label="breadcrumb" id="breadnav">
+        <ol class="breadcrumb" id="dynamicBreadcrumb">
+            <li class="breadcrumb-item"><a href="#dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item position-relative"><a href="#qh">Help<span
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        99+
+                        <span class="visually-hidden">unread messages</span></a></li>
+            <li class="breadcrumb-item"><a href="#anp">Add Product</a></li>
+            <li class="breadcrumb-item position-relative"><a href="#activity">Activity<span
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        99+
+                        <span class="visually-hidden">unread messages</span></a></li>
+            <li class="breadcrumb-item"><a href="#carouselExample">Promo</a></li>
+            <li class="breadcrumb-item"><a href="#inventory">Goals</a></li>
+        </ol>
+    </nav>
+    <div data-bs-spy="scroll" data-bs-target="#breadnav" class="container">
+        <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+            <strong>New orders received!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div class="row g-4 text-center section" id="dashboard">
+            <div class="col-12 col-md-4 col-lg-7">
+                <div class="card h-100" id="cardBody5">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Sales</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">$120,000</h6>
+                        <p class="card-text">Compared to last month: +12%</p>
+                        <i class="bi bi-graph-up-arrow" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-title="View sales performance"></i><br>
+                    </div>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Edit this product" id="edit-btn">Edit</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Delete this record" id="del-btn">Delete</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal5" data-bs-placement="bottom"
+                            data-bs-title="View details">View</button>
+                        <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Total Sales</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" id="modalBody5">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="card h-100" id="cardBody6">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Orders</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">1,250</h6>
+                        <p class="card-text">New orders this week: 150</p>
+                        <i class="bi bi-box-seam-fill" data-bs-container="body" data-bs-toggle="popover"
+                            data-bs-placement="bottom"
+                            data-bs-content="Discounts apply only to orders above $100. Limited to one per user."></i><br>
+                    </div>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Edit this product" id="edit-btn">Edit</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Delete this record" id="del-btn">Delete</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal6" data-bs-placement="bottom"
+                            data-bs-title="View details">View</button>
+                        <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Total Orders</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" id="modalBody6">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-2" >
+                <div class="card h-100" id="cardBody7">
+                    <div class="card-body">
+                        <h5 class="card-title">Customers</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">875</h6>
+                        <p class="card-text">25 new customers this week</p>
+                        <i class="bi bi-people-fill"></i><br>
+                    </div>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Edit this product" id="edit-btn">Edit</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Delete this record" id="del-btn">Delete</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal7" data-bs-placement="bottom"
+                            data-bs-title="View details">View</button>
+                        <div class="modal fade" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Customers</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" id="modalBody7">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="card h-100" id="cardBody8">
+                    <div class="card-body">
+                        <h5 class="card-title">Inventory</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">5,432 items</h6>
+                        <p class="card-text">Low stock: 12 items</p>
+                        <i class="bi bi-archive" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-title="Current stock level"></i><br>
+                    </div>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Edit this product" id="edit-btn">Edit</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Delete this record" id="del-btn">Delete</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal8" data-bs-placement="bottom"
+                            data-bs-title="View details">View</button>
+                        <div class="modal fade" id="exampleModal8" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Inventory</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" id="modalBody8">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card h-100" id="cardBody8">
+                    <div class="card-body">
+                        <h5 class="card-title">Inventory</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">5,432 items</h6>
+                        <p class="card-text">Low stock: 12 items</p>
+                        <i class="bi bi-archive" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-title="Current stock level"></i><br>
+                    </div>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Edit this product" id="edit-btn">Edit</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Delete this record" id="del-btn">Delete</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal8" data-bs-placement="bottom"
+                            data-bs-title="View details">View</button>
+                        <div class="modal fade" id="exampleModal8" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Inventory</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" id="modalBody8">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion mt-4 section" id="qh">
+            <h1 class="display-1">Quick Help</h1>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <strong>Add Product</strong>
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#qh">
+                    <div class="accordion-body">
+                        Learn how to add new products to your store, including images, pricing, and stock quantity.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <strong>Manage Orders</strong>
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#qh">
+                    <div class="accordion-body">
+                        View, update, and fulfill customer orders. Includes filtering, status changes, and printing
+                        invoices.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <strong>Contact Support</strong>
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="qh">
+                    <div class="accordion-body">
+                        Need help? Reach out to our support team via chat or email for technical or account assistance.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary d-grid mx-auto mt-4 section" data-bs-toggle="modal"
+            data-bs-target="#exampleModal" id="anp">
+            Add New Product
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="myForm">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Product Name</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="basic-url" class="form-label">Price</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">$</span>
+                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                                        id="basic-url">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                <label class="form-check-label" for="checkDefault">
+                                    In Stock
+                                </label>
+                            </div>
+                            <select class="form-select mt-2" aria-label="Default select example" id="categories">
+                                <option selected>Category</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Fashion">Fashion</option>
+                                <option value="Appliances">Home Appliances</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary mx-3 mb-3" id="submitBtn" data-bs-container="body"
+                            data-bs-toggle="popover" data-bs-placement="bottom"
+                            data-bs-content="Make sure all fields are correctly filled before submitting.">Submit <span
+                                id="spinner" class="spinner-border spinner-border-sm d-none" aria-hidden="true"></span>
+                        </button>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="download (24).jpeg" class="rounded me-2 toastimg" alt="...">
+                    <strong class="me-auto">ShopZone</strong>
+                    <small>11 mins ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    Product added successfully!
+                </div>
+            </div>
+        </div>
+        <ul class="nav nav-tabs mt-4 section" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                    type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Products</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link position-relative" id="profile-tab" data-bs-toggle="tab"
+                    data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                    aria-selected="false">Orders<span
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        99+
+                        <span class="visually-hidden">unread messages</span></button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                    type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                tabindex="0">
+                <div class="table-responsive">
+                    <table class="table" id="productTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Wireless Headphones</td>
+                                <td>Electronics</td>
+                                <td>$49.99</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Running Shoes</td>
+                                <td>Footwear</td>
+                                <td>$79.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Coffee Maker</td>
+                                <td>Home Appliances</td>
+                                <td>$120.50</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                        <button type="button" class="btn btn-outline-primary edit-btn" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Edit this product">Edit</button>
+                        <button type="button" class="btn btn-outline-primary delete-btn" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Delete this record">Delete</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-placement="bottom"
+                            data-bs-title="View details" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal2">View</button>
+                        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Products</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" id="modalBody1">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Order ID</th>
+                                <th scope="col">Customer Name</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>#ORD1024</td>
+                                <td>Ali Raza</td>
+                                <td>Shipped</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>#ORD1025</td>
+                                <td>Sara Ahmed</td>
+                                <td>Pending</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>#ORD1026</td>
+                                <td>Zain Malik</td>
+                                <td>Delivered</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                        <button type="button" class="btn btn-outline-primary edit-btn" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Edit this product">Edit</button>
+                        <button type="button" class="btn btn-outline-primary delete-btn" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Delete this record">Delete</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-placement="bottom"
+                            data-bs-title="View details" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal3">View</button>
+                        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Orders</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" id="modalBody2">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Customer Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Total Orders</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Fatima Khan</td>
+                                <td>fatima@example.com</td>
+                                <td>8 Orders</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Ahmed Bilal</td>
+                                <td>ahmedb@example.com</td>
+                                <td>5 Orders</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Maria Yousuf</td>
+                                <td>maria.y@example.com</td>
+                                <td>12 Orders</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                        <button type="button" class="btn btn-outline-primary edit-btn" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Edit this product">Edit</button>
+                        <button type="button" class="btn btn-outline-primary delete-btn" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Delete this record">Delete</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-placement="bottom"
+                            data-bs-title="View details" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal4">View</button>
+                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Contact</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" id="modalBody3">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ol class="list-group list-group-numbered mt-4 section" id="activity">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">Recent Activity</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Order #ORD1030 placed by Ayesha Noor</li>
+                        <li class="list-group-item">New product 'Smartwatch X2' added to inventory</li>
+                        <li class="list-group-item">Price updated for 'Bluetooth Speaker'</li>
+                    </ul>
+                </div>
+                <span class="badge text-bg-primary rounded-pill">3</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">New Signups</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Usman Tariq - usman@example.com</li>
+                        <li class="list-group-item">Hina Sheikh - hina@example.com</li>
+                        <li class="list-group-item">Bilal Asad - bilal@example.com</li>
+                    </ul>
+                </div>
+                <span class="badge text-bg-primary rounded-pill">3</span>
+            </li>
+        </ol>
+        <div id="carouselExample" class="carousel slide section mt-5">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="banner 1.jpeg" class="d-block w-100 bannerimg" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="download (2).png" class="d-block w-100 bannerimg" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="download (20).jpeg" class="d-block w-100 bannerimg" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="download (21).jpeg" class="d-block w-100 bannerimg" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="download (22).jpeg" class="d-block w-100 bannerimg" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="download (23).jpeg" class="d-block w-100 bannerimg" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon btn btn-outline-secondary" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon btn btn-outline-secondary" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <nav aria-label="Page navigation example" class="mt-1">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" aria-label="Previous" id="cprev" href="#">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" data-slide-to="0">1</a></li>
+                <li class="page-item"><a class="page-link" data-slide-to="1">2</a></li>
+                <li class="page-item"><a class="page-link" data-slide-to="2">3</a></li>
+                <li class="page-item"><a class="page-link" data-slide-to="3">4</a></li>
+                <li class="page-item"><a class="page-link" data-slide-to="4">5</a></li>
+                <li class="page-item"><a class="page-link" data-slide-to="5">6</a></li>
+                <li class="page-item">
+                    <a class="page-link" aria-label="Next" id="cnext" href="#">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="card-group mt-4 section" id="inventory">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Inventory Status</h5>
+                    <p class="card-text">Product: Bluetooth Speaker</p>
+                    <div>Inventory Level:
+                        <div class="progress mt-1" role="progressbar" aria-label="Example with label" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" style="width: 70%">70%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary">Status: Stock is healthy</small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Sales Goal</h5>
+                    <p class="card-text">Goal: Monthly Sales Target - $10,000</p>
+                    <div>Achieved:
+                        <div class="progress mt-1" role="progressbar" aria-label="Example with label" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" style="width: 65%">65%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary">Status: On track</small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Order Fulfillment</h5>
+                    <div>Orders Fulfilled:
+                        <div class="progress mt-1" role="progressbar" aria-label="Example with label" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" style="width: 85%">85%</div>
+                        </div>
+                    </div>
+                    <div>Remaining Orders:
+                        <div class="progress mt-1" role="progressbar" aria-label="Example with label" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" style="width: 15%">15%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary">Status: Almost done</small>
+                </div>
+            </div>
+        </div>
+        <p class="d-inline-flex gap-1 mt-4">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">
+                Filters
+            </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <div class="d-grid justify-content-end mb-3">
+                    <button type="button" class="btn-close" aria-label="Close" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample"></button>
+                </div>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Filter By Category</option>
+                    <option value="1">Electronics</option>
+                    <option value="2">Fashion</option>
+                    <option value="3">Groceries</option>
+                </select>
+                <div class="mb-3 mt-3">
+                    <label for="basic-url" class="form-label">Min Price</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                            id="basic-url">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="basic-url" class="form-label">Max Price</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                            id="basic-url">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                    <label class="form-check-label" for="checkDefault">
+                        In Stock
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <script src="E-commerce Dashboard.js"></script>
+</body>
+
+</html>
